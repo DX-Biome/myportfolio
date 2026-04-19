@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Healing - なぜ犬に癒やされるのか</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap');
+        
+        body {
+            font-family: 'Kiwi Maru', serif;
+            background-color: #fdf6e3;
+            color: #5d4037;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #ffecb3 0%, #ffe082 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+        .dog-image-container {
+            aspect-ratio: 16/9;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+        }
+        .pulse-heart {
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header -->
+    <header class="p-6 text-center">
+        <h1 class="text-4xl font-bold mb-2">わんこの癒やし研究所 <i class="fas fa-paw text-orange-400"></i></h1>
+        <p class="text-lg opacity-80">科学で解き明かす「なぜ、こんなに可愛いのか」</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 pb-12">
+        
+        <!-- Hero Section: Dog Interaction -->
+        <section class="mb-12 bg-white rounded-3xl p-8 shadow-sm border border-orange-100">
+            <div class="dog-image-container mb-6 bg-orange-50">
+                <img id="dogDisplay" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80" alt="かわいい犬" class="w-full h-full object-cover">
+                <div id="loading" class="absolute inset-0 bg-white bg-opacity-80 hidden items-center justify-center">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500"></div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button onclick="getNewDog()" class="bg-orange-400 hover:bg-orange-500 text-white px-8 py-3 rounded-full font-bold transition shadow-lg mb-4">
+                    新しい癒やしを呼ぶ <i class="fas fa-magic ml-2"></i>
+                </button>
+                <p class="text-sm text-gray-500 italic">※ボタンを押すと新しいわんこに会えます</p>
+            </div>
+        </section>
+
+        <!-- The "Why" Section -->
+        <section class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-blue-50 card-hover">
+                <div class="flex items-center mb-4">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4 text-blue-500">
+                        <i class="fas fa-flask fa-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">1. オキシトシンの分泌</h3>
+                </div>
+                <p class="leading-relaxed">
+                    犬と見つめ合ったり触れ合ったりすると、脳内で<strong>「オキシトシン」</strong>（幸せホルモン）が分泌されます。これは驚くべきことに、人間だけでなく犬の脳内でも同時に分泌され、種を超えた深い信頼関係を築く力があります。
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-green-50 card-hover">
+                <div class="flex items-center mb-4">
+                    <div class="bg-green-100 p-3 rounded-full mr-4 text-green-500">
+                        <i class="fas fa-heartbeat fa-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">2. ストレスの軽減</h3>
+                </div>
+                <p class="leading-relaxed">
+                    犬との交流は、ストレスホルモンである<strong>「コルチゾール」</strong>のレベルを低下させることが科学的に証明されています。血圧を下げ、心拍を安定させる効果があるため、アニマルセラピーとしても広く活用されています。
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-purple-50 card-hover">
+                <div class="flex items-center mb-4">
+                    <div class="bg-purple-100 p-3 rounded-full mr-4 text-purple-500">
+                        <i class="fas fa-child fa-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">3. ベビーシェマの魅力</h3>
+                </div>
+                <p class="leading-relaxed">
+                    「大きな目」「丸みを帯びた体」「短い鼻」。これらは動物行動学で<strong>ベビーシェマ</strong>と呼ばれ、人間が「守りたい、可愛い」と本能的に感じる特徴です。犬はこの特徴を多く備えているため、私たちの保護欲を刺激します。
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-yellow-50 card-hover">
+                <div class="flex items-center mb-4">
+                    <div class="bg-yellow-100 p-3 rounded-full mr-4 text-yellow-500">
+                        <i class="fas fa-smile-beam fa-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">4. 無条件の肯定</h3>
+                </div>
+                <p class="leading-relaxed">
+                    犬はあなたを評価しません。言葉がなくても、尻尾を振って全力であなたを歓迎します。この<strong>「ありのままの自分を受け入れてくれる存在」</strong>が、現代社会で疲れた心にとって最高の安らぎとなります。
+                </p>
+            </div>
+        </section>
+
+        <!-- Interactive Heart -->
+        <section class="bg-orange-100 rounded-3xl p-8 text-center border-2 border-dashed border-orange-300">
+            <h3 class="text-2xl font-bold mb-4">あなたの癒やし度</h3>
+            <div id="heartContainer" class="text-6xl mb-4 text-red-400 cursor-pointer transition-transform hover:scale-110" onclick="boostHealing()">
+                <i class="fas fa-heart pulse-heart"></i>
+            </div>
+            <p id="healingText" class="text-lg">ハートをクリックして、癒やしパワーをチャージ！</p>
+            <div class="w-full bg-white rounded-full h-4 mt-6 overflow-hidden">
+                <div id="progressBar" class="bg-red-400 h-full transition-all duration-500" style="width: 20%"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="p-8 text-center text-gray-500 text-sm">
+        <p>&copy; 2024 わんこの癒やし研究所 - あなたの心に、一匹のわんこを。</p>
+    </footer>
+
+    <script>
+        let healingLevel = 20;
+
+        async function getNewDog() {
+            const dogImg = document.getElementById('dogDisplay');
+            const loading = document.getElementById('loading');
+            
+            loading.classList.remove('hidden');
+            loading.classList.add('flex');
+
+            try {
+                // Dog APIを使用してランダムな画像を取得
+                const response = await fetch('https://dog.ceo/api/breeds/image/random');
+                const data = await response.json();
+                
+                // 画像の読み込み完了を待つ
+                const newImg = new Image();
+                newImg.src = data.message;
+                newImg.onload = () => {
+                    dogImg.src = data.message;
+                    loading.classList.remove('flex');
+                    loading.classList.add('hidden');
+                };
+            } catch (error) {
+                console.error("画像取得に失敗しました", error);
+                loading.classList.remove('flex');
+                loading.classList.add('hidden');
+            }
+        }
+
+        function boostHealing() {
+            if (healingLevel < 100) {
+                healingLevel += 10;
+                document.getElementById('progressBar').style.width = healingLevel + '%';
+                
+                if (healingLevel >= 100) {
+                    document.getElementById('healingText').innerHTML = "<strong>癒やし完了！</strong> 最高の気分ですね！";
+                    document.getElementById('heartContainer').classList.add('text-pink-600');
+                } else {
+                    document.getElementById('healingText').innerText = "癒やしチャージ中...";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
